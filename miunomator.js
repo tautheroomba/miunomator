@@ -1,18 +1,23 @@
 var profession = [
-  "דוקטור!",
-  "מאמי!",
-  "נשמה!",
-  "אחות!",
-  "פקידת קבלה טרוטת עיניים!",
-  "כפרה!",
-  "משוש חיי!",
-  "רמבו!",
-  "מר בחור!",
-  "אדוני הרופא!",
-  "אח'שלי!",
-  "מהראג'ה!",
-  "ליסטים!"
+  "דוקטור",
+  "מאמי",
+  "נשמה",
+  "אחות",
+  "פקידת קבלה טרוטת עיניים",
+  "כפרה",
+  "משוש חיי",
+  "רמבו",
+  "מר בחור",
+  "אדוני הרופא",
+  "אח'שלי",
+  "מהראג'ה",
+  "ליסטים",
+  "אחינו הנהג",
 ];
+
+var exclamation = [
+  "!", "!!", "!!!", "...", "!?", "?!", "???"
+]
 
 var ailment = [
   "כואב לי",
@@ -157,7 +162,7 @@ var also = [
   "וחוצמזה ",
   "ובנוסף לכך ",
   "ואם זה לא מספיק אז ",
-  "וזה עוד כלום!  ",
+  "וזה עוד כלום! ",
 ]
 
 var furthermore = [
@@ -254,14 +259,8 @@ function getHurts() {
 //I was handed a poorly written code and was too lazy to refactor it, don't judge me!
 function reload() {
 
-  if (localStorage.pagecount) {
-    localStorage.pagecount = Number(localStorage.pagecount) + 1;
-  }
-  else {
-    localStorage.pagecount = 1;
-  }
-
   var LR1 = Math.floor(Math.random() * profession.length);
+  var LR11 = Math.floor(Math.random() * exclamation.length);
   var LR2 = Math.floor(Math.random() * ailment.length);
   var LR22 = Math.floor(Math.random() * bodypart.length);
   var LR3 = Math.floor(Math.random() * duration1.length);
@@ -276,8 +275,7 @@ function reload() {
 
 
   var rText = 
-  "<div class=\"small\"><br/>  תלונה מספר " +   localStorage.pagecount + "</div>" +
-    profession[LR1] + " "
+    profession[LR1] + exclamation[LR11] + " "
     + ailment[LR2] + " "
     + bodypart[LR22] + " "
     + duration1[LR3] + " "

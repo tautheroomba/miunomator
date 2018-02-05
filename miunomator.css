@@ -1,0 +1,64 @@
+
+@import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
+
+body {
+    background-image: url("miunomator.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #cccccc;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    font-family: Helvetica;
+    margin-top: 100px;
+}
+
+#complaint {
+    font-family: "Alef Hebrew";
+    font-size: 20pt;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 70px;
+    padding: 30px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: red;
+    border-radius: 25px;
+    background-color: rgba(255,255,255,0.7);
+    height: 250px;
+}
+
+#reload {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: arial;
+    font-weight: bolder;
+    border-color:Darkred;
+    border-style: solid;
+    text-align: center;
+    font-size: 20pt;
+    background: #f7aba3;
+    width: 250px;
+    margin-left: 15%;
+    margin-top: 50px;
+    margin-right: 65%;
+}
+
+#reload:hover {
+    color: yellow;
+    cursor: pointer;
+}
+
+#credits {
+    text-align: left;
+    color: yellow;
+    bottom: 0%;
+    left: 1%;
+    position: fixed;
+}

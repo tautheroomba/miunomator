@@ -11,46 +11,66 @@ var profession = [
   "אדוני הרופא",
   "אח'שלי",
   "מהראג'ה",
+  "גיבור",
+  "מלך",
+  "אלוף",
+  "תותח",
+  "זיין",
   "ליסטים",
   "אחינו הנהג",
 ];
 
 var exclamation = [
-  "!", "!!", "!!!", "...", "!?", "?!", "???"
+  "!", "!!", "!!!", "!?!", "?!?", "...", "!?", "?!", "???"
 ]
 
-var ailment = [
+var simpAilment = [
   "כואב לי",
   "מציק לי",
   "מגרד לי",
   "נעים לי",
   "מאולחש לי",
   "ממש קר לי",
-  "יש לי פריחה לא ספציפית",
-  "יש לי הפרעת קצב",
   "מוזר לי",
   "מדגדג לי",
-  "יש לי תחושת אכזבה",
-  "אני חש סחרחורת",
-  "יש לי גיבנת",
-  "יש לי צ'יסטה",
-  "יש לי עקצוץ",
-  "אני חש דקירות לא ספציפיות",
-  "יש לי כאב קוליקי",
-  "יש לי גבשוש",
-  "יש לי אבצס",
-  "יש לי תחושת צריבה",
-  "יש לי תחושת לחץ",
-  "יש לי אוטם חריף",
-  "אני סובל מאוטם המורגי",
-  "יש לי קריש חוסם",
-  "יש לי אי ספיקה דיאסטולית",
-  "יש לי אי ספיקה סיסטולית",
-  "יש לי בצקת גומתית",
-  "יש לי תפליטים",
-  "יש לי נגע נקרוטי",
-  "יש לי תולעת סרט",
-  "יש לי קדחת השחת",
+]
+
+var compAilment1 = [
+  "יש לי ",
+  "אבחנתי בעצמי ",
+  "שמתי לב ל",
+  "אני חש ",
+  "ראיתי במראה "
+]
+
+var compAilment2 = [
+  "פריחה לא ספציפית",
+  "הפרעת קצב",
+  "תחושת אכזבה",
+  "סחרחורת",
+  "גיבנת",
+  "ציסטה",
+  "עקצוץ",
+  "דקירות לא ספציפיות",
+  "כאב קוליקי",
+  "גבשוש",
+  "אבצס",
+  "תחושת צריבה",
+  "תחושת לחץ",
+  "אוטם חריף",
+  "אוטם המורגי",
+  "קריש חוסם",
+  "אי ספיקה דיאסטולית",
+  "אי ספיקה סיסטולית",
+  "בצקת גומתית",
+  "תפליטים",
+  "נגע נקרוטי",
+  "תולעת סרט",
+  "קדחת השחת",
+  "קרצינומה",
+  "קנדידה",
+  "גורגונדולוזה",
+  "מוצרלה",
 ]
 
 var bodypart = [
@@ -93,10 +113,11 @@ var bodypart = [
   "בדוגלס פאוצ'",
   "בפפילה על שם וואטר",
   "באוזן התיכונה מימין",
-  "ביותרת האשך אבל יותר משמאל",
+  "ביותרת האשך (אבל יותר משמאל)",
   "ברביע ימני תחתון",
   "ליד עצם הזנב",
   "באבובית המקורבת",
+  "באיי לנגרהנס",
   "בלולאה על שם הנלה",
   "בגרעיני הבסיס",
   "בשקדים",
@@ -261,6 +282,12 @@ var diagnosis = [
   "זיהום ויראלי שיחלוף מעצמו",
   "מיטלשמערץ",
   "סטרפטוקוקוס",
+  "אנחנו צריכים להתייחס יותר בכבוד לשואבי האבק שלנו",
+  "רקוויאם לחלום זה הסרט הכי אובר רייטד בעולם",
+  "בז', אני אצבע את התקרה בבז'",
+  "הפסקתי להקשיב באמצע המשפט הראשון כי לא ישנתי כבר 36 שעות",
+  "שלושה כוכבי מישלן",
+  "P!=NP",
 ];
 
 
@@ -269,12 +296,22 @@ function getHurts() {
 }
 
 
+function getAilment() {
+  var factor = Math.floor(Math.random() * (simpAilment.length + compAilment2.length));
+  if (factor < simpAilment.length) {
+    return simpAilment[factor]
+  } else {
+    factor -= simpAilment.length;
+    prefix = Math.floor(Math.random() * compAilment1.length);
+    return compAilment1[prefix] + compAilment2[factor]
+  }
+}
+
 //I was handed a poorly written code and was too lazy to refactor it, don't judge me!
 function reload() {
 
   var LR1 = Math.floor(Math.random() * profession.length);
   var LR11 = Math.floor(Math.random() * exclamation.length);
-  var LR2 = Math.floor(Math.random() * ailment.length);
   var LR22 = Math.floor(Math.random() * bodypart.length);
   var LR3 = Math.floor(Math.random() * duration1.length);
   var LR33 = Math.floor(Math.random() * also.length);
@@ -289,12 +326,12 @@ function reload() {
 
   var rText = 
     profession[LR1] + exclamation[LR11] + " "
-    + ailment[LR2] + " "
+    + getAilment() + " "
     + bodypart[LR22] + " "
     + duration1[LR3] + " "
     + also[LR33] + furthermore[LR333]
     + and[LR4] + " " + duration1[LR5]
-    + ".<br/> <br/> (באבחנה מבדלת: " + diagnosis[LR6] + ")";
+    + ".<br/> <br/> <div class=\"small\"> (באבחנה מבדלת: " + diagnosis[LR6] + ")</div>";
 
   document.getElementById("complaint").innerHTML = rText;
 }

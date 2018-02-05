@@ -13,14 +13,14 @@ h1{
     text-align: center;
     color: white;
     font-family: Helvetica;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .small{
-    font-size: small;
+    font-size: 14pt;
     font-family: monospace;
     color: rgb(78, 161, 97);
-    text-align: left;
+    padding-right: 10px;
 }
 
 #complaint {
@@ -35,7 +35,6 @@ h1{
     border-color: red;
     border-radius: 25px;
     background-color: rgba(255,255,255,0.7);
-    height: 250px;
 }
 
 #reload {
@@ -52,10 +51,14 @@ h1{
     text-align: center;
     font-size: 20pt;
     background: #f7aba3;
+    margin-left: auto;
+    margin-right: auto;
     width: 250px;
-    margin-left: 15%;
     margin-top: 10px;
-    margin-right: 65%;
+    bottom: 1%;
+    left: 10%;
+    position: fixed;
+
 }
 
 #reload:hover {

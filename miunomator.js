@@ -288,15 +288,10 @@ var diagnosis = [
   "הפסקתי להקשיב באמצע המשפט הראשון כי לא ישנתי כבר 36 שעות",
   "שלושה כוכבי מישלן",
   "P!=NP",
+  "ואלאר מרגוליס",
 ];
 
-
-function getHurts() {
-  return hurts[Math.floor(Math.random() * hurts.length)].replace("BP", randomBodyPart());
-}
-
-
-function getAilment() {
+function ailment() {
   var factor = Math.floor(Math.random() * (simpAilment.length + compAilment2.length));
   if (factor < simpAilment.length) {
     return simpAilment[factor]
@@ -307,32 +302,30 @@ function getAilment() {
   }
 }
 
-//I was handed a poorly written code and was too lazy to refactor it, don't judge me!
+function re(list) {
+  return list[Math.floor(Math.random() * list.length)]
+}
+
 function reload() {
 
-  var LR1 = Math.floor(Math.random() * profession.length);
-  var LR11 = Math.floor(Math.random() * exclamation.length);
-  var LR22 = Math.floor(Math.random() * bodypart.length);
-  var LR3 = Math.floor(Math.random() * duration1.length);
-  var LR33 = Math.floor(Math.random() * also.length);
-  var LR333 = Math.floor(Math.random() * furthermore.length);
-  var LR4 = Math.floor(Math.random() * and.length);
-  var LR5 = Math.floor(Math.random() * duration1.length);
-  while (LR5 == LR3) {
-    var LR5 = Math.floor(Math.random() * duration1.length);
+  function rText() {
+    return "<div class=\"small\" id=\"num\">תלונה מספר <a id=\"counter\"></a></div>" +
+      re(profession) + re(exclamation) + " " + ailment() + " " + re(bodypart) + " "
+      + d1 + " " + re(also) + re(furthermore) + re(and) + " " + d2
+      + ".<br/> <br/> <div class=\"small\"> (באבחנה מבדלת: " + re(diagnosis) + ")</div>";
   }
-  var LR6 = Math.floor(Math.random() * diagnosis.length);
 
+  d1 = re(duration1);
+  do { d2 = re(duration1) } while (d2 == d1);
+  document.getElementById("complaint").innerHTML = rText();
 
-  var rText = 
-    profession[LR1] + exclamation[LR11] + " "
-    + getAilment() + " "
-    + bodypart[LR22] + " "
-    + duration1[LR3] + " "
-    + also[LR33] + furthermore[LR333]
-    + and[LR4] + " " + duration1[LR5]
-    + ".<br/> <br/> <div class=\"small\"> (באבחנה מבדלת: " + diagnosis[LR6] + ")</div>";
+  var n = localStorage.getItem('on_load_counter');
 
-  document.getElementById("complaint").innerHTML = rText;
+  if (n === null) n = 0;
+  n++;
+  localStorage.setItem("on_load_counter", n);
+
+  document.getElementById("counter").innerHTML = n;
 }
+
 window.addEventListener("load", reload);
